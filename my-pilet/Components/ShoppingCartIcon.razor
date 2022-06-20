@@ -1,0 +1,19 @@
+@attribute [PiralExtension("some-extension")]
+@inject ShoppingCartState _shoppingCartState
+
+<div>
+    <h2>Extension Cart Count: <strong style="padding: 3px; color: white; background: red;">@(_shoppingCartState.Items.Count())</strong></h2>
+    <button @onclick="Reload">Call Extension StateHasChanged()</button>
+</div>
+
+@code{
+    protected override void OnInitialized()
+    {
+        _shoppingCartState.OnChange += StateHasChanged;
+    }
+
+    private void Reload(){
+        Console.WriteLine("Calling StateHasChanged() on Extension ...");
+        StateHasChanged();
+    }
+}

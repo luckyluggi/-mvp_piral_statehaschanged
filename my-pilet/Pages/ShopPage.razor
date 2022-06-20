@@ -1,0 +1,37 @@
+@page "/shop"
+@inject ShoppingCartState _shoppingCartState
+
+<h2>Page Cart Count: <strong style="padding: 3px; color: white; background: red;">@(_shoppingCartState.Items.Count())</strong></h2>
+<button @onclick="Reload">Call Page StateHasChanged()</button>
+<br>
+<br>
+
+<hr>
+
+<Extension name="some-extension" />
+<br>
+<br>
+
+
+<Shop />
+
+@code{
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("Page Initialized");
+        _shoppingCartState.OnChange += StateHasChanged;
+    }
+
+    private List<string> AvailableItems = new List<string>(){
+        "Apple",
+        "Banana",
+        "Kiwi",
+        "Mango",
+        "Orange",
+    };
+
+    private void Reload(){
+        Console.WriteLine("Calling StateHasChanged() on Page ...");
+        StateHasChanged();
+    }
+}

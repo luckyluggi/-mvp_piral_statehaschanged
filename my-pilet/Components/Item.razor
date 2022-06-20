@@ -1,0 +1,11 @@
+@inject ShoppingCartState _shoppingCartState
+
+<div style="margin: 5px; background: lightgrey; color: black; padding: 5px;">
+    <h3 style="margin: 0; padding: 0;">@Name</h3>
+    <button @onclick=@(() => _shoppingCartState.AddItem(Name)) style="background: grey; color: black; padding: 5px;">Add to cart</button>
+</div>
+
+@code{
+    [Parameter]
+    public string Name { get; set; }
+}

@@ -1,0 +1,17 @@
+@inject ShoppingCartState _shoppingCartState
+
+<table>
+    @foreach (var item in _shoppingCartState.Items)
+    {
+        <tr>
+            <td>@item</td>
+        </tr>
+    }
+</table>
+
+@code{
+    protected override void OnInitialized()
+    {
+        _shoppingCartState.OnChange += StateHasChanged;
+    }
+}
